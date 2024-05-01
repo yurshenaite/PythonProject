@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 
+# TODO: ДЗ
+
 days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 max_day = timedelta(3)
 
