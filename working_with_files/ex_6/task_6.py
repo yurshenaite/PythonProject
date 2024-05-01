@@ -7,7 +7,6 @@ with open('output.txt', 'w', encoding='UTF-8') as file_w:
     except ValueError:
         file_w.write('ERROR')
     else:
-        pass
         if N == len(content) - 1:
             file_w.write('YES')
         else:
