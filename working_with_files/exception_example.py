@@ -13,3 +13,5 @@ else:
     print('Успех', num * 2)
 finally:
     print('Завершение программы')
+
+print('a')
