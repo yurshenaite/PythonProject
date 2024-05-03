@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 
 # TODO: ДЗ
 
-days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 max_day = timedelta(3)
-
+total_list = []
+list_of_cells = []
 
 def convert_str_data_to_date_time(month, day):
     return datetime(
@@ -17,25 +17,21 @@ def convert_str_data_to_date_time(month, day):
 with open('input.txt', 'r', encoding='UTF-8') as file_r:
     content = file_r.readlines()
 
-until = content[0].strip().split('.')
-busy_cells = content[1].strip()
-end_day, end_moth = until
+current_date = content[0].strip().split('.')
+busy_cells = int(content[1].strip())
+cur_day, cur_moth = current_date
 
-start_day, start_moth = ['31', '05']
-start_date = convert_str_data_to_date_time(
-    start_moth, start_day
-)
-end_date = convert_str_data_to_date_time(
-    end_moth, end_day
-)
+#for cell in busy_cells:
+    #list_of_cells.append(cell)
+    #number_of_cell, cell_date =
 
-if (end_date - start_date) < max_day:
-    print('YES')
-else:
-    print('NO', max_day)
+cell_day, cell_moth = ['31', '05']
 
-"""
-31.05
+cur_day_date = convert_str_data_to_date_time(cur_moth, cur_day)
+cell_date = convert_str_data_to_date_time(cell_moth, cell_day)
 
-04.06
-"""
+if (cell_date - current_date) > max_day:
+    total_list.append('')
+
+with open('output.txt', 'w', encoding='UTF-8') as file_w:
+    file_w.writelines(total_list)
