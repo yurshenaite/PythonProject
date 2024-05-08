@@ -1,12 +1,17 @@
 from datetime import datetime, timedelta
 
-# TODO: ДЗ
-
 MAX_DAY = timedelta(3)
 YEAR = 2023
 
 
-def convert_str_data_to_date_time(month, day, year=YEAR):
+def convert_str_data_to_date_time(day, month, year=YEAR):
+    """Конвертирует строковые значения в datetime объект.
+
+    :param day: День.
+    :param month: Месяц.
+    :param year: Год, по умолчанию равен YEAR.
+    :return: Возвращает datetime объект.
+    """
     return datetime(
         year=year,
         month=int(month),
@@ -17,40 +22,26 @@ def convert_str_data_to_date_time(month, day, year=YEAR):
 with open('input.txt', 'r', encoding='UTF-8') as file_r:
     content = file_r.readlines()
 
-print(content)
+# print(content)
 
-content_1 = content[:2]
-until_date, busy_cells_count = content_1[0], content_1[1]
+until_date, busy_cells_count = content[:2]
 until_day, until_month = until_date.strip().split('.')
 busy_cells_count = busy_cells_count.strip()
 
-print(until_day, until_month, busy_cells_count)
-
-# TODO: 1. Срезаем content[:2] получим ['04.06\n', '3\n']
-#  2. Распакуем в переменные until_date, busy_cells_count,
-#  тогда until_date = '04.06\n' busy_cells_count = '3\n'
-#  3. Далее until_date очищаем от пробельных символов и
-#  разобъём по символу . (точка), сразу распакуем в переменные
-#  until_day, until_month = until_date,
-#  тогда until_day = '04', until_month = '06'
-#  4. busy_cells_count просто очищаем, чтобы была busy_cells_count = '3'
+# CTRL + Q
+end_date = convert_str_data_to_date_time(until_day, until_month)
+# print(end_date.strftime('%d/%m/%Y %H:%M:%S'), type(end_date))
 
 result = []
 for cell_data in content[2:]:
-    # Очищаем от пробельных символов и разбиваем по пробелу,
-    # чтобы отделить номер ячейки от даты
     cell_num, date_info = cell_data.strip().split()
-    print(cell_num, date_info)
-    convert_str_data_to_date_time()
-    # cell_num = 1000
-    # date_info = 01.06
+    day, month = date_info.split('.')
+    # print(cell_num, date_info)
+    start_date = convert_str_data_to_date_time(day, month)
+    # print(type(start_date))
 
-    #  TODO: 5. Далее для date_info повторяем
-    #   те же действия, что в шаге 3.
-    #   6. Нужно использовать convert_str_data_to_date_time
-
-    # if (until_date - current_date) > MAX_DAY:
-    #     result.append(cell_num)
+    if (end_date - start_date) > MAX_DAY:
+        result.append(cell_num + '\n')
 
 with open('output.txt', 'w', encoding='UTF-8') as file_w:
     file_w.writelines(result)
