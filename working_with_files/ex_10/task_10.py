@@ -18,8 +18,13 @@ with open('input.txt', 'r', encoding='UTF-8') as file_r:
     content = file_r.readlines()
 
 print(content)
-# Структура content:
-# ['04.06\n', '3\n', '1000 01.06\n', '1001 31.05\n', '2007 21.05\n']
+
+content_1 = content[:2]
+until_date, busy_cells_count = content_1[0], content_1[1]
+until_day, until_month = until_date.strip().split('.')
+busy_cells_count = busy_cells_count.strip()
+
+print(until_day, until_month, busy_cells_count)
 
 # TODO: 1. Срезаем content[:2] получим ['04.06\n', '3\n']
 #  2. Распакуем в переменные until_date, busy_cells_count,
@@ -36,6 +41,7 @@ for cell_data in content[2:]:
     # чтобы отделить номер ячейки от даты
     cell_num, date_info = cell_data.strip().split()
     print(cell_num, date_info)
+    convert_str_data_to_date_time()
     # cell_num = 1000
     # date_info = 01.06
 
