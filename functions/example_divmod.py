@@ -3,9 +3,9 @@
 
 num = 567
 
-first = ...
-second = ...
-third = ...
+first = (num // 100) % 10
+second = (num // 10) % 10
+third = num % 10
 
 big_num = 3479
 
@@ -49,4 +49,4 @@ print(get_max_item_and_index(res))
 
 # print(get_digits(4578))
 # print(get_digits(-78))
-# print(get_digits(104674357547854371))
+print(get_digits(104674357547854371))
